@@ -1,0 +1,56 @@
+<div class="container">
+
+  <h2> Registrar Facultad</h2>
+
+  <div class="mensaje" *ngIf="mensaje">{{ mensaje }}</div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label>NOMBRE</label>
+      <input formControlName="nombre" placeholder="Ej: Facultad de Ingeniería" />
+    </div>
+
+    <div class="form-group">
+      <label>DECANO</label>
+      <input formControlName="decano" placeholder="Ej: Dr. Juan Pérez" />
+    </div>
+
+    <div class="form-group">
+      <label>UBICACIÓN</label>
+      <input formControlName="ubicacion" placeholder="Ej: Edificio A, Piso 2" />
+    </div>
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Guardando...' : 'Registrar Facultad' }}
+    </button>
+
+  </form>
+
+  <h2> Facultades Registradas</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Decano</th>
+        <th>Ubicación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let f of facultades">
+        <td>{{ f.id }}</td>
+        <td>{{ f.nombre }}</td>
+        <td>{{ f.decano }}</td>
+        <td>{{ f.ubicacion }}</td>
+      </tr>
+      <tr *ngIf="facultades.length === 0">
+        <td colspan="4" style="text-align:center; color:#999;">
+          No hay facultades registradas aún
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
